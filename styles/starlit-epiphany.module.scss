@@ -1,0 +1,62 @@
+
+$primary-text-color: #ffffff;
+
+.main {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    background-repeat: repeat;
+    background-image: url("/images/background-dark-grey-noise.jpg");
+    color: $primary-text-color;
+}
+
+.heading {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.columnGrid {
+    display: grid;
+    grid: 100%/ 15% 1fr 15%;
+    grid-auto-flow: row;
+
+}
+
+.cardColumns {
+    display: grid; 
+    grid-template-columns: 1fr 1fr;
+    justify-content:space-around;
+}
+
+
+.dangerCardColumn {
+justify-self: center;
+}
+
+.deckCardColumn {
+    justify-self: center;
+}
+
+.cardContainer {
+    border: 2px solid red;
+    width: 220px;
+    height: 40px;
+}
+
+.regionColumn {
+    border: 2px solid green;
+    height: 100vh;
+}
+
+
+
+.filterColumn {
+    border: 2px solid orange;
+    height: 100vh;
+}
