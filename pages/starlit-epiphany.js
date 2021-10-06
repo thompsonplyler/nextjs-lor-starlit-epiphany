@@ -5,6 +5,7 @@ import data3 from '../data/lorData/set3/en_us/data/set3-en_us.json'
 import data4 from '../data/lorData/set4/en_us/data/set4-en_us.json'
 import data5 from '../data/lorData/set5/en_us/data/set5-en_us.json'
 import lorDangerCards from "../data/lorDangerCards.js"
+import lorHashTable from '../data/bigData.json'
 import Card from '../components/card'
 import Image from 'next/image'
 
@@ -16,35 +17,43 @@ export async function getStaticProps() {
       }
     }
   }
+  
+  
+  // How to traverse multiple data sets... 
+  // Master list of cards and their cardCode values
+  // dangerList will be an array of cardCodes
+  // pull data from the aggregated datasets without
+  // scrubbing through a for loop. 
+  
+  let dangerArray = ["05BC188", "01NX053", "01SI015", "01FR030", "05BC001", "03MT084"]
+  let value = dangerArray[0]
+  console.log("This is from the hash table:", lorHashTable[`${value}`])
+
+console.log("These are the lor Danger Cards:", lorDangerCards)
 
 
-// How to traverse multiple data sets... 
-// Master list of cards and their cardCode values
-// dangerList will be an array of cardCodes
-// pull data from the aggregated datasets without
-// scrubbing through a for loop. 
+export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
+    
+    let dataArray = dangerArray.map(code=> {
+        return lorHashTable[`${code}`]
+    })
 
-let dangerArray = ["05BC188", "01NX053", "01SI015", "01FR030", "05BC001", "03MT084"]
-
-console.log(lorDangerCards)
-
-
-export default function StarlitEpiphany({data1, data2, data3, data4}) {
-    let thing = 42
-    let dataArray = []
-
-    for (let i = 35; i < thing; i++){
-        dataArray.push(data1[i])
-    }
-
-    console.log(dataArray)
-    // console.log(data1)
+    console.log("This is the data array: ", dataArray)
 
     let processedData = dataArray.map(card=>{
-        let name = card.name
-        let cardCode = card.cardCode
-        let set = card.set.toLowerCase()
-        return <Card name={name} set={set} cardCode={cardCode} key={cardCode}/>
+        let {name, set, region, regions, spellSpeed,subtype, subtypes, cost, cardCode} = card
+        set = set.toLowerCase()
+        return <Card 
+                name={name} 
+                set={set} 
+                region={region} 
+                regions={regions} 
+                spellSpeed={spellSpeed} 
+                subtype={subtype} 
+                cost={cost} 
+                cardCode={cardCode} 
+                key={cardCode}
+            />
          
     })
 
