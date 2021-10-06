@@ -1,19 +1,24 @@
+// styles
 import styles from '../styles/starlit-epiphany.module.scss'
+
+//data
 import data1 from '../data/lorData/set1/en_us/data/set1-en_us.json'
 import data2 from '../data/lorData/set2/en_us/data/set2-en_us.json'
 import data3 from '../data/lorData/set3/en_us/data/set3-en_us.json'
 import data4 from '../data/lorData/set4/en_us/data/set4-en_us.json'
 import data5 from '../data/lorData/set5/en_us/data/set5-en_us.json'
-import lorDangerCards from "../data/lorDangerCards.js"
 import lorHashTable from '../data/bigData.json'
+import lorDangerArray from '../data/dangerCards'
+
+// components 
 import Card from '../components/card'
-import Image from 'next/image'
+import FilterColumn from '../components/filterColumn'
 
 export async function getStaticProps() {
    
     return {
       props: {
-        data1, data2, data3, data4, data5, lorDangerCards
+        data1, data2, data3, data4, data5
       }
     }
   }
@@ -24,21 +29,13 @@ export async function getStaticProps() {
   // dangerList will be an array of cardCodes
   // pull data from the aggregated datasets without
   // scrubbing through a for loop. 
-  
-  let dangerArray = ["05BC188", "01NX053", "01SI015", "01FR030", "05BC001", "03MT084"]
-  let value = dangerArray[0]
-  console.log("This is from the hash table:", lorHashTable[`${value}`])
-
-console.log("These are the lor Danger Cards:", lorDangerCards)
 
 
 export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
     
-    let dataArray = dangerArray.map(code=> {
+    let dataArray = lorDangerArray.map(code=> {
         return lorHashTable[`${code}`]
     })
-
-    console.log("This is the data array: ", dataArray)
 
     let processedData = dataArray.map(card=>{
         let {name, set, region, regions, spellSpeed,subtype, subtypes, cost, cardCode} = card
@@ -64,26 +61,26 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
         </div>
 
         <div className={styles.columnGrid}>
-            <div className={styles.regionColumn}>
+        <FilterColumn />
 
-            </div>
-
-            <div className={styles.cardColumns}>
+            <div className={styles.cardColumns1}>
 {
-// possibly make column split below programmatic based on presence of 
-// deck code entered. If there are no deck cards, there should be no deck column.
-// danger cards can start in the center in the Mobalytics style. (2px x 2px squares 
+// make column split below programmatic based on presence of 
+// deck code entered - cardColumn 1 or 2. 
+// If there are no deck cards, there should be no deck column. (cardColumn1)
+// danger cards can start in the center in the Mobalytics style. (2px x 2px squares) 
 // to signify number used vs/ in deck, traditionally.
 }
                 <div className={styles.dangerCardColumn}>
                     {processedData}
                 </div>
+
                 <div className={styles.deckCardColumn}>
                 </div>                
+            
             </div>
             
-            <div className={styles.filterColumn}>
-            </div>
+            
             
         </div>
 

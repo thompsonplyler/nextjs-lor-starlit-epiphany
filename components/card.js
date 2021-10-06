@@ -1,8 +1,7 @@
 import styles from '../styles/starlit-epiphany.module.scss'
-import imageParse from '../lib/imageParse'
 import Image from 'next/image'
 
-export default function Card({name, cardCode, set}) {
+export default function Card( {name, set, region, regions, spellSpeed,subtype, subtypes, cost, cardCode}) {
 
     return (
             <div className={styles.cardContainer}>
