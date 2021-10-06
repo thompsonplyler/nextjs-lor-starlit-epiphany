@@ -40,6 +40,7 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
     let processedData = dataArray.map(card=>{
         let {name, set, region, regions, spellSpeed,subtype, subtypes, cost, cardCode} = card
         set = set.toLowerCase()
+        // need modal for mouseover on card
         return <Card 
                 name={name} 
                 set={set} 

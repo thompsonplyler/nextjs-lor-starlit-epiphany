@@ -38,7 +38,9 @@ This list will include features the app needs to be functional as well as necess
 
 ## 2021 10 04 
 * **UNRESOLVED** - Address the misuse of style modules.
-    * Style modules are intended to keep styles as locally scoped as possible. Attaching all card, etc. styles to the Starlit Epiphany app as a whole is a misuse of CSS modules tool. 
+    * Style modules are intended to keep styles as locally scoped as possible. Attaching all card, etc. styles to the Starlit Epiphany app as a whole is a misuse of CSS modules tool.
 * How to programattically assign the focal point of an image in NextJS.
-* How to traverse the json files depending on the card code. Probably need a massive key 
-* How to develop said file w/ massive key based on existing data. Typing it per card is obviously impractical and betrays low skill.
+    * **Update** This is probably impossible, but the tool to implement manually is a combination of transform-origin and scale/position per card.
+* ~~How to traverse the json files depending on the card code. Probably need a massive key~~ Solved. cf. /hashTableMaker
+* ~~How to develop said file w/ massive key based on existing data. Typing it per card is obviously impractical and betrays low skill.~~ Solved. cf. /hashTableMaker
+* Either solve image scaling in image/next or drop NextJS image optimization entirely. Sad to see it go, but current images are unusable.

@@ -5,13 +5,10 @@ export default function Card( {name, set, region, regions, spellSpeed,subtype, s
 
     return (
             <div className={styles.cardContainer}>
-                <Image
-              priority
-              src={`/lorData/${set}/en_us/img/cards/${cardCode}.png`}
-              height={40}
-              width={220}
-              alt={name}
-            />
+              <img className={styles.cardImage} src={`/lorData/${set}/en_us/img/cards/${cardCode}.png`}/>
+
+              {/* objectFit={"cover"}
+              layout="fill" */}
 
             </div>
         )

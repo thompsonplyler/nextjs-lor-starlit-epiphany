@@ -1,6 +1,7 @@
 
 $primary-text-color: #ffffff;
 
+// entire page
 .main {
     position: absolute;
     top: 0;
@@ -19,7 +20,14 @@ $primary-text-color: #ffffff;
     justify-content: center;
 }
 
+// styling for basic HTML elements
+.hrStyle {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(78, 78, 78, 0.438), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+}
 
+// main container for app
 .columnGrid {
     display: grid;
     grid: 100%/ 15% 1fr;
@@ -27,53 +35,75 @@ $primary-text-color: #ffffff;
 
 }
 
+// center column, 1 
 .cardColumns1 {
     display: grid; 
     grid-template-columns: 1fr;
     justify-content:space-around;
 }
 
+// center column, 1 
 .cardColumns2 {
     grid-template-columns: 1fr 1fr;
 }
 
 
+// columns for specific columns 
 .dangerCardColumn {
 justify-self: center;
 }
 
 .deckCardColumn {
-    justify-self: center;
+justify-self: center;
 }
 
+// div holding cards
 .cardContainer {
     border: 2px solid red;
     width: 220px;
     height: 40px;
+    position: relative;
+    overflow: hidden;
 }
 
-.regionColumn {
-    border: 2px solid green;
+.cardImage {
+    
+    transform: scale(1.5)translate(20px, -30px);
+    // transform: 
+    transform-origin: 100px 100px;
+
+    
+    // left: 40px;
+    // width: 1000px;
+    // overflow: hidden;
+    
+}
+
+// filter sections 
+.filterColumn {
+    border: 2px solid orange;
     height: 100vh;
 }
 
 .regionContainer {
     display: grid;
     grid: 1fr 1fr / 1fr 1fr 1fr 1fr 1fr;
-    border: 2px solid green;
-    height: 10vh;
+    // border: 2px solid green;
+    height: 15%;
 }
 
 .costContainer {
     display: grid;
     grid: 1fr 1fr 1fr / 1fr 1fr 1fr 1fr 1fr;
-    border: 2px solid teal;
-    height: 15vh;
+    // border: 2px solid teal;
+    height: 20%;
+    justify-content:end
 }
 
-
-
-.filterColumn {
-    border: 2px solid orange;
-    height: 100vh;
+.typeContainer {
+    display: grid;
+    grid: 1fr / 1fr 1fr 1fr 1fr 1fr 1fr;
+    // border: 2px solid fuchsia;
+    height: 5%;
 }
+
