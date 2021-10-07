@@ -5,6 +5,7 @@ export default function Card( {name, set, region, regions, spellSpeed,subtype, s
 
     return (
             <div className={styles.cardContainer}>
+              <p className={styles.cardText}>{name}</p>
               <img className={styles.cardImage} src={`/lorData/${set}/en_us/img/cards/${cardCode}.png`}/>
 
               {/* objectFit={"cover"}

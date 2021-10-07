@@ -1,7 +1,8 @@
 import styles from '../styles/starlit-epiphany.module.scss'
 import Image from 'next/image'
+import DeckInput from './deckInput'
 
-export default function FilterColumn({}) {
+export default function FilterColumn({handleDeckCode}) {
 
     // region list. won't change
     const regionList = [
@@ -46,21 +47,21 @@ export default function FilterColumn({}) {
 
     
     // array to display mana costs
-    // 2021 10 6
-    // need to implement z-index with cost on over mana gem
-    // need to implement dataset to track clicks from starlit-epiphany
-    // also need to revise mana gem image
         let costMap = []
-        for (let i=0;i<13;i++){
+        for (let i=0;i<=13;i++){
             costMap.push(
-                <div data-cost={i} name={`${i} mana`}>
-                    <Image
-                        priority
-                        src={`/images/ui-images/Empty_Mana_Art_LoR.png`}
-                        height={100}
-                        width={100}>
-                    </Image>
-                </div>
+                    <div className={styles.costImageContainer}>
+                    <p className={styles.costText}>{i<13?i:"13+"}</p>
+                    <img className={styles.costImage} src={`/images/ui-images/Empty_Mana_Art_LoR.png`}/>
+                    </div>
+              
+              
+                // <div data-cost={i} name={`${i} mana`}>
+                //     <div className={styles.costImageContainer}>
+                //         <p className={styles.costTex}>1</p>
+                //         <img className={styles.costImage} src={`/images/ui-images/Empty_Mana_Art_LoR.png`} />
+                //     </div>
+                // </div>
             )
         }
 
@@ -124,6 +125,7 @@ export default function FilterColumn({}) {
                 {/* type section */}
                 {typeMap}
                 </div>
+                <DeckInput handleDeckCode={handleDeckCode}/>
             </div>
         )
 

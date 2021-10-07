@@ -1,3 +1,6 @@
+// library imports
+import {useState, useEffect} from 'react'
+
 // styles
 import styles from '../styles/starlit-epiphany.module.scss'
 
@@ -22,22 +25,9 @@ export async function getStaticProps() {
       }
     }
   }
-  
-  
-  // How to traverse multiple data sets... 
-  // Master list of cards and their cardCode values
-  // dangerList will be an array of cardCodes
-  // pull data from the aggregated datasets without
-  // scrubbing through a for loop. 
 
-
-export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
-    
-    let dataArray = lorDangerArray.map(code=> {
-        return lorHashTable[`${code}`]
-    })
-
-    let processedData = dataArray.map(card=>{
+const cardArrayMaker = (array) => {
+    const deckData = array.map(card=>{
         let {name, set, region, regions, spellSpeed,subtype, subtypes, cost, cardCode} = card
         set = set.toLowerCase()
         // need modal for mouseover on card
@@ -54,6 +44,45 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
             />
          
     })
+    return deckData
+}
+
+export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
+    const [deck, setDeck] = useState([])
+    const [cardArray, setCardArray] = useState([])
+    const [regions,setRegions] = useState([])
+    const [cost,setCost] = useState(0)
+    const [type,setType] = useState("")
+    const [deckArray, setDeckArray] = useState([])
+ 
+    // set the initial column from the danger cards
+    useEffect(()=>{
+        document.title="Starlit Epiphany"
+        
+        let initialData = lorDangerArray.map(code=>{
+            return lorHashTable[`${code}`]
+        })
+
+        let initialArray = cardArrayMaker(initialData)
+        console.log(initialArray)
+        setCardArray(initialArray)
+
+    },[])
+
+    
+    let dataArray = lorDangerArray.map(code=> {
+        return lorHashTable[`${code}`]
+    })
+
+    const handleDeckCode = (deckData) => {
+        console.log(deckData)
+        let hashedDeckArray = deckData.map(card=>{
+            return lorHashTable[`${card.code}`]
+    
+        })
+        let deck = cardArrayMaker(hashedDeckArray)
+        setDeckArray(deck)
+    }
 
     return (
     <div className={styles.main}>
@@ -62,9 +91,9 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
         </div>
 
         <div className={styles.columnGrid}>
-        <FilterColumn />
+        <FilterColumn handleDeckCode={handleDeckCode} />
 
-            <div className={styles.cardColumns1}>
+            <div className={(deckArray.length>0)?styles.cardColumns2:styles.cardColumns1}>
 {
 // make column split below programmatic based on presence of 
 // deck code entered - cardColumn 1 or 2. 
@@ -73,14 +102,14 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
 // to signify number used vs/ in deck, traditionally.
 }
                 <div className={styles.dangerCardColumn}>
-                    {processedData}
+                    {cardArray}
                 </div>
 
                 <div className={styles.deckCardColumn}>
+                    {deckArray}
                 </div>                
             
-            </div>
-            
+        </div>    
             
             
         </div>
@@ -88,4 +117,3 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
     </div>
     )
   }
-
