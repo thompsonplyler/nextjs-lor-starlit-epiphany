@@ -22,6 +22,7 @@ $primary-text-color: #ffffff;
     background-repeat: repeat;
     background-image: url("/images/background-dark-grey-noise.jpg");
     color: $primary-text-color;
+    z-index: -1
 }
 
 .heading {
@@ -75,7 +76,8 @@ justify-self: center;
 // div holding cards
 .cardContainer {
     // border: 1px solid red;
-    margin: 2%;
+    position: relative;
+    margin: 5%;
     width: 220px;
     height: 40px;
     overflow: hidden;
@@ -84,28 +86,22 @@ justify-self: center;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    
+    z-index: 0;
 }
 
 .cardText{
     position: relative;
-    z-index: 1;
+    z-index: 0;
     text-align: center;
     bottom: 20%;
     text-shadow: 2px 2px 2px black;
 }
 
 .cardImage {
-    z-index: 0;
+    position: relative;
+    z-index: -1;
     transform: scale(1.5)translate(10px, -70px);
-    // transform: 
     transform-origin: 100px 100px;
-
-    
-    // left: 40px;
-    // width: 1000px;
-    // overflow: hidden;
-    
 }
 
 
@@ -195,5 +191,11 @@ justify-self: center;
 .inputStyle::placeholder {
     color: grey;
     font-size: 1em;
+}
+
+.cardModalContainer {
+}
+
+.cardModalImage {
 }
 

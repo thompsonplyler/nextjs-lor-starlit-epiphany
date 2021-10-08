@@ -36,11 +36,16 @@ This list will include features the app needs to be functional as well as necess
 ![](https://i.imgur.com/yPFo7lr.png)
 
 
-## 2021 10 04 
+## LAST UPDATES 2021 10 08 @ 1213
 * **UNRESOLVED** - Address the misuse of style modules.
     * Style modules are intended to keep styles as locally scoped as possible. Attaching all card, etc. styles to the Starlit Epiphany app as a whole is a misuse of CSS modules tool.
 * How to programattically assign the focal point of an image in NextJS.
     * **Update** This is probably impossible, but the tool to implement manually is a combination of transform-origin and scale/position per card.
 * ~~How to traverse the json files depending on the card code. Probably need a massive key~~ Solved. cf. /hashTableMaker
 * ~~How to develop said file w/ massive key based on existing data. Typing it per card is obviously impractical and betrays low skill.~~ Solved. cf. /hashTableMaker
-* Either solve image scaling in image/next or drop NextJS image optimization entirely. Sad to see it go, but current images are unusable.
+* ~~Either solve image scaling in image/next or drop NextJS image optimization entirely. Sad to see it go, but current images are unusable.~~ Removed NextJS Image component for now.
+    * Need to optimize images for different connections and speeds once functionality is implemented. 
+* ~~Mouse-over modal for cards.~~ Complete.
+* ~~use window.document.documentElement.scrollTop to adjust modal position based on scroll distance.~~
+* Flickering of modal when mousing over cards from z-fighting. Modal doesn't appear when mouse over from the left? Super weird.
+
