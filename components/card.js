@@ -2,7 +2,23 @@ import {useState, useEffect} from 'react'
 import styles from '../styles/starlit-epiphany.module.scss'
 
 
-export default function Card( {name, set, region, regions, spellSpeed,subtype, subtypes, cost, cardCode, cardModalMaker, hover, setHover, setModalCard,setModalMousePos}) {
+export default function Card( {
+  name, 
+  set, 
+  region, 
+  regions, 
+  spellSpeed,
+  subtype, 
+  subtypes, 
+  cost, 
+  cardCode, 
+  cardModalMaker, 
+  hover, 
+  setHover, 
+  setModalCard,
+  setModalMousePos,
+  openModal,
+  closeModal}) {
 
 
   const handleMouseEnter = (e, set, cardCode) => {
@@ -13,7 +29,7 @@ export default function Card( {name, set, region, regions, spellSpeed,subtype, s
     setHover(true)
     setModalMousePos({x:e.clientX,y:e.clientY})
     cardModalMaker(e,set,cardCode)
-
+    openModal()
   }
 
   const handleMouseLeave = () => {

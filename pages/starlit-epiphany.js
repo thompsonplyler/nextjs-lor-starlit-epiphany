@@ -1,5 +1,6 @@
 // library imports
 import {useState, useEffect} from 'react'
+import Modal from 'react-modal';
 
 // styles
 import styles from '../styles/starlit-epiphany.module.scss'
@@ -17,6 +18,19 @@ import lorDangerArray from '../data/dangerCards'
 import Card from '../components/card'
 import FilterColumn from '../components/filterColumn'
 import CardModal from '../components/cardModal'
+
+const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
+
+  Modal.setAppElement(CardModal)
 
 export async function getStaticProps() {
    
@@ -38,6 +52,20 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
     const [modalCardSet, setModalCardSet] = useState("")
     const [modalCardCode, setModalCardCode] = useState("")
     const [modalMousePos, setModalMousePos] = useState({x:0,y:0})
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+      }
+
+    function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+      }
 
     const cardArrayMaker = (array) => {
         const sortedData = array.sort((a,b)=>{
@@ -62,6 +90,8 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
                     hover={hover}
                     setHover={setHover}
                     setModalMousePos={setModalMousePos}
+                    openModal={openModal}
+                    closeModal={closeModal}
                 />
              
         })
@@ -160,9 +190,20 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
             
             
         </div>
-        {hover?
-        <CardModal set={modalCardSet} cardCode={modalCardCode} mousePos={modalMousePos}/>:null} 
+        <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+        >
 
+            <CardModal 
+                set={modalCardSet} 
+                cardCode={modalCardCode} 
+                mousePos={modalMousePos}
+            /> 
+        </Modal>
     </div>
     )
   }
