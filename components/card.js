@@ -13,10 +13,7 @@ export default function Card( {
   cost, 
   cardCode, 
   cardModalMaker, 
-  hover, 
-  setHover, 
-  setModalCard,
-  setModalMousePos,
+    setModalMousePos,
   openModal,
   closeModal}) {
 
@@ -26,15 +23,15 @@ export default function Card( {
     // console.log("event from mouse entry: ", e,"\n\n\n" )
     console.log("window from event: ",window,"\n\n\n")
     console.log("scroll stuff: ", window.document.documentElement.scrollTop)
-    setHover(true)
+    // setHover(true)
     setModalMousePos({x:e.clientX,y:e.clientY})
     cardModalMaker(e,set,cardCode)
-    openModal()
+    
   }
 
   const handleMouseLeave = () => {
     // console.log ("mouse left!")
-    setHover(false)
+    // setHover(false)
     
   }
 
@@ -42,7 +39,7 @@ export default function Card( {
     setModalMousePos({x:e.pageX,y:e.pageY})  }
 
     return (
-            <div className={styles.cardContainer} onMouseEnter={(e)=>handleMouseEnter(e,set,cardCode)} onMouseLeave={handleMouseLeave} onMouseMove={handleMouseMove}>
+            <div className={styles.cardContainer} onMouseEnter={openModal} onMouseLeave={handleMouseLeave} onMouseMove={handleMouseMove}>
               <p className={styles.cardText}>{name}</p>
               <img className={styles.cardImage} src={`/lorData/${set}/en_us/img/cards/${cardCode}.png`}/>
 

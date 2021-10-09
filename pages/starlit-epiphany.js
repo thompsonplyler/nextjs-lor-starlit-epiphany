@@ -19,6 +19,9 @@ import Card from '../components/card'
 import FilterColumn from '../components/filterColumn'
 import CardModal from '../components/cardModal'
 
+Modal.setAppElement("#big")
+
+// style list from react-modal example
 const customStyles = {
     content: {
       top: '50%',
@@ -30,8 +33,9 @@ const customStyles = {
     },
   };
 
-  Modal.setAppElement(CardModal)
 
+
+// importing data for NextJs
 export async function getStaticProps() {
    
     return {
@@ -53,8 +57,10 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
     const [modalCardCode, setModalCardCode] = useState("")
     const [modalMousePos, setModalMousePos] = useState({x:0,y:0})
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [showModal, setShowModal] = useState(false)
 
     function openModal() {
+        setShowModal(true)
         setIsOpen(true);
       }
 
@@ -92,6 +98,7 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
                     setModalMousePos={setModalMousePos}
                     openModal={openModal}
                     closeModal={closeModal}
+                    showModal={showModal}
                 />
              
         })
@@ -188,22 +195,23 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
             
             </div>    
             
-            
-        </div>
-        <Modal
-            isOpen={modalIsOpen}
-            onAfterOpen={afterOpenModal}
-            onRequestClose={closeModal}
-            style={customStyles}
-            contentLabel="Example Modal"
-        >
+{/*
+Modal Testing
+*/}
+        
 
-            <CardModal 
-                set={modalCardSet} 
-                cardCode={modalCardCode} 
-                mousePos={modalMousePos}
-            /> 
+
+
+
+
+        </div>
+        <div id="big"/>
+        <Modal>
+        <div className="testThing" className={styles.testThing}><p>Test</p></div>
         </Modal>
+       
+        
     </div>
+
     )
   }
