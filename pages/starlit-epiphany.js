@@ -34,7 +34,7 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
     const [cost,setCost] = useState(0)
     const [type,setType] = useState("")
     const [deckArray, setDeckArray] = useState([])
-    const [hover, setHover] = useState(0)
+    const [hover, setHover] = useState(false)
     const [modalCardSet, setModalCardSet] = useState("")
     const [modalCardCode, setModalCardCode] = useState("")
     const [modalMousePos, setModalMousePos] = useState({x:0,y:0})
@@ -160,9 +160,15 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
             
             
         </div>
+        {/* Modal Position*/}
         {hover?
-        <CardModal set={modalCardSet} cardCode={modalCardCode} mousePos={modalMousePos}/>:null} 
-
+            <CardModal 
+                set={modalCardSet} 
+                cardCode={modalCardCode} 
+                mousePos={modalMousePos}
+                />:
+            null
+        }
     </div>
     )
   }
