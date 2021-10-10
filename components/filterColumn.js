@@ -1,4 +1,4 @@
-import styles from '../styles/starlit-epiphany.module.scss'
+import styles from '../styles/filter.module.scss'
 import Image from 'next/image'
 import DeckInput from './deckInput'
 import {useState, useEffect} from 'react'
@@ -132,7 +132,7 @@ export default function FilterColumn({
         let costMap = []
         for (let i=0;i<=13;i++){
             costMap.push(
-                    <div className={styles.costImageContainer} data-cost={i} onClick={(e)=>handleCostSet(e,i)}>
+                    <div className={styles.costImageContainer} data-cost={i} onClick={(e)=>handleCostSet(e,i<13?i:25)}>
                     <p className={styles.costText}>{i<13?i:"13+"}</p>
                     <img className={styles.costImage} src={`/images/ui-images/Empty_Mana_Art_LoR.png`}/>
                     </div>

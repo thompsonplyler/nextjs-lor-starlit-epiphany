@@ -104,7 +104,10 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
            
             costFilteredData.filter(card=>{
                 regions.regions.forEach(region=>{
-                    card.region==region?regionFilteredData.push(card):null
+                    card.regions.forEach(regionItem=>{
+                        regionItem==region?regionFilteredData.push(card):null
+                    })
+                    
                 })
             })
             
@@ -192,7 +195,7 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
                 />:
             null
         }
-        <div className={styles.costTest}>{cost.cost}</div>
+        {/* <div className={styles.costTest}>{cost.cost}</div> */}
     </div>
     )
   }

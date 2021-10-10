@@ -1,0 +1,29 @@
+.cardContainer {
+    // border: 1px solid red;
+    position: relative;
+    margin: 5%;
+    width: 220px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 25px;
+    box-shadow: 2px 2px 2px 2px black;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    z-index: 0;
+}
+
+.cardText{
+    position: relative;
+    z-index: 0;
+    text-align: center;
+    bottom: 20%;
+    text-shadow: 2px 2px 2px black;
+}
+
+.cardImage {
+    position: relative;
+    z-index: -1;
+    transform: scale(1.5)translate(10px, -70px);
+    transform-origin: 100px 100px;
+}
