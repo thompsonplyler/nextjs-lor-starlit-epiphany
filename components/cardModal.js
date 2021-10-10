@@ -2,23 +2,28 @@ import styles from '../styles/starlit-epiphany.module.scss'
 import {useState, useEffect} from 'react'
 
 
-export default function CardModal( {set,cardCode, mousePos}) {
+export default  function CardModal( {set,cardCode, modalMousePos}) {
+  const [imageSrc, setImageSource] = useState("")
   
   set=set.toLowerCase()
-  console.log(mousePos.y+window.document.documentElement.scrollTop)
-  let boxY = mousePos.y+window.document.documentElement.scrollTop
+  let boxY = modalMousePos.y+window.document.documentElement.scrollTop
   
-  // console.log(mousePos.y)
+  useEffect( ()=>{
+    setImageSource(`/lorData/${set}/en_us/img/cards/${cardCode}.png`)
+  },[imageSrc])
+  // console.log(modalMousePos.y)
   const modalStyle = {
     position: "absolute",  
     width: "300px",
     top: boxY,
-    left: mousePos.x
+    left: modalMousePos.x,
+    zIndex: 3
   }
   
+  // placeholder lazy loading needed-- cf. how it's done in Mobalytics
     return (
             <div style={modalStyle}>
-              <img src={`/lorData/${set}/en_us/img/cards/${cardCode}.png`}/>
+              <img src={`${imageSrc}`}/>
             </div>
             // </div>
         )

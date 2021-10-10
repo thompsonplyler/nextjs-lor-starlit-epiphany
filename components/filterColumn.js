@@ -1,38 +1,103 @@
 import styles from '../styles/starlit-epiphany.module.scss'
 import Image from 'next/image'
 import DeckInput from './deckInput'
+import {useState, useEffect} from 'react'
 
-export default function FilterColumn({handleDeckCode, setCost, setRegions, setType, listRegionsFilter, listCostFilter,
+export default function FilterColumn({
+    handleDeckCode, 
+    setCost, 
+    setRegions,
+    setType, 
+    listRegionsFilter,
     listTypeFilter,
     cost,
     type,
-    regions}) {
+    regions
+}) {
 
     
-    const handleCostSet = async (e,i)=> {
-        let newCost = await i
-        setCost(newCost)
-        listCostFilter(i)
+    const handleCostSet = (e,i)=> {
+        const clickedCost = i
+        setCost({cost: clickedCost})
     }
 
-    const handleRegionSet = (e,regions) =>{
-        setRegions(regions)
+    const handleRegionSet = (e) =>{
+        const clickedRegion = e.target.name
+        regionHandler(clickedRegion)
     }
 
-    const handleTypeSet = (e,type) =>{
-        setType(type)
-        console.log(type)
+    const regionChecker = (clicked)=>{
+        console.log("\nStart of region handler:\n--------\n regions state is currently: ", regions)
+       
+        let oldRegionsArray = regions.regions
+        let newRegionsArray = oldRegionsArray
+        let done = false
+
+        if (oldRegionsArray.length === 0){
+            console.log(`No regions have been selected. Adding ${clicked}` )
+            newRegionsArray.push(clicked)
+            return newRegionsArray
+        }
+
+        if (oldRegionsArray.length === 1){
+            console.log("There is one region selected.\n")
+            let itExists = oldRegionsArray.indexOf(clicked)
+            console.log("Pretty sure we're getting a value here! ",itExists)
+            console.log(oldRegionsArray[itExists])
+            if (oldRegionsArray[itExists] == clicked){
+                console.log("\n Current region found. Removing...\n")
+                newRegionsArray = []
+                return newRegionsArray
+            }
+            else {
+                console.log(`...clicked region not found. Adding ${clicked}...`)
+                newRegionsArray.push(clicked)
+                return newRegionsArray
+            }
+
+        }
+
+
+        if (oldRegionsArray.length === 2) {
+            console.log("Two regions have been selected already.\n")
+            
+            let itExists = oldRegionsArray.indexOf(clicked)
+
+
+
+
+            if (oldRegionsArray[itExists] == clicked){
+                console.log(`Removing ${clicked} from region group...`)
+                newRegionsArray.splice(itExists,1)
+                return newRegionsArray
+            } 
+            else {
+                console.log("Sorry, you have already selected two regions.")
+                return newRegionsArray
+            }
+
+        }
+
+    }
+    const regionHandler = (clicked) => {
+        let regionsArray = regionChecker(clicked)
+        setRegions({regions:regionsArray})
+    }
+
+    const handleTypeSet = (e) =>{
+        const clickedType = e.target.name
+        setType(clickedType)
     }
     // region list. won't change
     const regionList = [
-        "Bandle_City", 
+        "Bandle City", 
         "Bilgewater",
         "Demacia",
         "Freljord",
         "Ionia",
         "Noxus",
-        "Piltover_Zaun",
-        "Shadow_Isles",
+        "Piltover & Zaun",
+        "Shadow Isles",
         "Shurima",
         "Targon",
     ]
@@ -46,12 +111,10 @@ export default function FilterColumn({handleDeckCode, setCost, setRegions, setTy
         "slow"
     ]
 
-    // array to render regions
-    // 2021 10 6
-    // need to implement dataset to track clicks from starlit-epiphany
     const regionMap = regionList.map(region=>{
+        
         return (
-            <div data-region={region} name={region} onClick={(e,region)=>handleRegionSet(e,region)}>
+            <div data-region={region} name={region} onClick={handleRegionSet}>
                     <Image
                         priority
                         src={`/images/ui-images/${region}_LoR_Region.png`}

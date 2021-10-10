@@ -47,5 +47,6 @@ This list will include features the app needs to be functional as well as necess
     * Need to optimize images for different connections and speeds once functionality is implemented. 
 * ~~Mouse-over modal for cards.~~ Complete.
 * ~~use window.document.documentElement.scrollTop to adjust modal position based on scroll distance.~~
-* Flickering of modal when mousing over cards from z-fighting. Modal doesn't appear when mouse over from the left? Super weird.
+* ~~Flickering of modal when mousing over cards from z-fighting. Modal doesn't appear when mouse over from the left? Super weird.~~ Most issues disappeared by removing following the mouse cursor, which was odd functionality anyway. 
+* **MODAL STUFF** Need to preload images w/ card back as per Mobalytics mouse-over. Due to formatting weirdness, can't use stupid ```<Image/>``` component from Next.
 

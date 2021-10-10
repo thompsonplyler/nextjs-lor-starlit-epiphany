@@ -30,8 +30,8 @@ export async function getStaticProps() {
 export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
     const [deck, setDeck] = useState([])
     const [cardArray, setCardArray] = useState([])
-    const [regions,setRegions] = useState([])
-    const [cost,setCost] = useState(0)
+    const [regions,setRegions] = useState({regions:[]})
+    let [cost,setCost] = useState({cost:21})
     const [type,setType] = useState("")
     const [deckArray, setDeckArray] = useState([])
     const [hover, setHover] = useState(false)
@@ -74,24 +74,58 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
         setModalCardSet(card.set)
   }
 
-    const resetDangerDeck = () => {
+    // const resetDangerDeck = () => {
+    //     let initialData = lorDangerArray.map(code=>{
+    //         return lorHashTable[`${code}`]
+    //     })
+
+    //     let initialArray = cardArrayMaker(initialData)
+    //     setCost({cost: 15})
+    //     setRegions({regions:[]})
+    //     setType("")
+    //     setCardArray(initialArray)
+    
+    // }
+
+    const createDangerDeckArray = () => {
+
         let initialData = lorDangerArray.map(code=>{
             return lorHashTable[`${code}`]
         })
 
-        let initialArray = cardArrayMaker(initialData)
-        setCost(0)
-        setRegions([])
-        setType("")
-        setCardArray(initialArray)
-    
+        let costFilteredData = initialData.filter(card=>card.cost<=cost.cost)
+        console.log(costFilteredData)
+        // for each region, filter the cards if they're included... 
+        console.log(regions)
+        let regionFilteredData = []
+
+        if (regions.regions.length != 0) {
+            console.log("WE GOT REGIONS HERE!")
+           
+            costFilteredData.filter(card=>{
+                regions.regions.forEach(region=>{
+                    card.region==region?regionFilteredData.push(card):null
+                })
+            })
+            
+        }
+        else {
+            regionFilteredData = costFilteredData
+            console.log("No regions found.")
+        }
+        
+        
+        let filteredCards = cardArrayMaker(regionFilteredData)
+
+        setCardArray(filteredCards)
     }
  
     // set the initial column from the danger cards
     useEffect(()=>{
         document.title="Starlit Epiphany"
-        resetDangerDeck()
-    },[])
+        createDangerDeckArray()
+        // resetDangerDeck()
+    },[cost,regions])
 
 
     let dataArray = lorDangerArray.map(code=> {
@@ -104,19 +138,8 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
             return lorHashTable[`${card.code}`]
     
         })
-        let deck = cardArrayMaker(hashedDeckArray)
-        setDeckArray(deck)
-    }
-
-    function listCostFilter(){
-        console.log("This is the cost I'm going to pass to the deck filter:\n",cost)
-        console.log(cardArray[0].props)
-        let newCardArray = []
-        cardArray.forEach(card=>
-            (card.props.cost<=cost)?newCardArray.push(card):null)
-        
-        console.log(newCardArray)
-
+        let newDeck = cardArrayMaker(hashedDeckArray)
+        setDeckArray(newDeck)
     }
 
     const listRegionsFilter = () => {
@@ -138,12 +161,12 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
                 setCost={setCost}
                 setType={setType}
                 setRegions={setRegions}
-                listCostFilter={listCostFilter}
+                regions={regions}
+                // listCostFilter={listCostFilter}
                 listRegionsFilter={listRegionsFilter}
                 listTypeFilter={listTypeFilter}
                 cost={cost}
                 type={type}
-                regions={regions}
             />
 
             <div className={(deckArray.length>0)?styles.cardColumns2:styles.cardColumns1}>
@@ -165,10 +188,11 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
             <CardModal 
                 set={modalCardSet} 
                 cardCode={modalCardCode} 
-                mousePos={modalMousePos}
+                modalMousePos={modalMousePos}
                 />:
             null
         }
+        <div className={styles.costTest}>{cost.cost}</div>
     </div>
     )
   }

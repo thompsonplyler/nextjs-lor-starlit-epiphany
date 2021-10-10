@@ -6,12 +6,9 @@ export default function Card( {name, set, region, regions, spellSpeed,subtype, s
 
 
   const handleMouseEnter = (e, set, cardCode) => {
-    console.log("mouse entered!")
-    // console.log("event from mouse entry: ", e,"\n\n\n" )  
     setHover(true)
     setModalMousePos({x:e.clientX,y:e.clientY})
     cardModalMaker(e,set,cardCode)
-
   }
 
   const handleMouseLeave = () => {
