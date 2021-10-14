@@ -36,7 +36,7 @@ This list will include features the app needs to be functional as well as necess
 ![](https://i.imgur.com/yPFo7lr.png)
 
 
-## LAST UPDATES 2021 10 08 @ 1213
+## LAST UPDATES 2021 10 10 @ 1641
 * ~~Address the misuse of style modules.~~ Separated styles into appropriate files.
     * ~~Style modules are intended to keep styles as locally scoped as possible. Attaching all card, etc. styles to the Starlit Epiphany app as a whole is a misuse of CSS modules tool.~~ 
     
@@ -51,4 +51,4 @@ This list will include features the app needs to be functional as well as necess
 * ~~use window.document.documentElement.scrollTop to adjust modal position based on scroll distance.~~
 * ~~Flickering of modal when mousing over cards from z-fighting. Modal doesn't appear when mouse over from the left? Super weird.~~ Most issues disappeared by removing following the mouse cursor, which was odd functionality anyway. 
 * **MODAL STUFF** Need to preload images w/ card back as per Mobalytics mouse-over. Due to formatting weirdness, can't use stupid ```<Image/>``` component from Next.
-
+* **MODAL STUFF** Adjust positioning on mouse cursor relative to the bottom or sides of the viewport. 
