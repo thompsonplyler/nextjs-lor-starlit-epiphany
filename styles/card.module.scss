@@ -16,18 +16,17 @@
 .cardDataContainer {
     position: relative;
     display: grid;
-    grid: 100%/10% 1fr 10%;
+    grid: 100%/15% 1fr 10%;
     z-index: 1;
     height: 100%;
     align-items: center;    
     justify-content: center;
-    background: rgb(68,176,214);
-    background: linear-gradient(90deg, rgba(68,176,214,1) 55%, rgba(9,9,121,0) 73%);
 }
 
 .cardText{
     position: relative;
     z-index: 2;
+    font-size: .9em;
     // bottom: 20%;
     text-shadow: 2px 2px 2px black;
     justify-self: center;
@@ -42,22 +41,68 @@
 
 .cardDataCost {
     position: relative;
-
-    // display: inline-block;
-    width: 100%;
-    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    left: .2em;
+    width: 110%;
     border-radius: 50%;
-    background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+    background-image: radial-gradient(blue,lightblue);
+    // background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+    box-shadow: 2px 2px 2px black
 }
 
-  .cardDataCost:before {
+.cardDataCost:after {
     position: relative;
-    content: "";
-    width: 90%;
-    height: 90%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    left: .2em;
+    width: 110%;
     border-radius: 50%;
-    background: radial-gradient(circle at 50% 0px, #ffffff, rgba(255, 255, 255, 0) 58%);
-    filter: blur(5px);
-    z-index: 2;
-  }
+    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+    // background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+    box-shadow: 2px 2px 2px black
+}
+
+.costImageContainer{
+    display: grid;
+    grid: 100%/100%;
+    align-items: center;
+    justify-items: center;
+    border-radius: 50%;
+    
+}
+
+.costImage {
+    position: relative;
+    width: 100%;
+    left: 10%;
+    z-index: 1;
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+.costText {
+    position: relative;
+    z-index: 3;
+    left: 10%;
+    font-size: 1em;
+    text-shadow: 2px 2px 2px black;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    overflow: hidden;
+}
+
+
+//   .cardDataCost:before {
+//     position: relative;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     border-radius: 50%;
+//     background: radial-gradient(circle at 50% 0px, #ffffff, rgba(255, 255, 255, 0) 58%);
+//     filter: blur(5px);
+//     z-index: 2;
+//   }
 
