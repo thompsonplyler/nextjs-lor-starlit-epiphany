@@ -8,17 +8,29 @@
     border-radius: 25px;
     box-shadow: 2px 2px 2px 2px black;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
     z-index: 0;
+}
+
+.cardDataContainer {
+    position: relative;
+    display: grid;
+    grid: 100%/10% 1fr 10%;
+    z-index: 1;
+    height: 100%;
+    align-items: center;    
+    justify-content: center;
+    background: rgb(68,176,214);
+    background: linear-gradient(90deg, rgba(68,176,214,1) 55%, rgba(9,9,121,0) 73%);
 }
 
 .cardText{
     position: relative;
-    z-index: 0;
-    text-align: center;
-    bottom: 20%;
+    z-index: 2;
+    // bottom: 20%;
     text-shadow: 2px 2px 2px black;
+    justify-self: center;
 }
 
 .cardImage {
@@ -27,3 +39,25 @@
     transform: scale(1.5)translate(10px, -70px);
     transform-origin: 100px 100px;
 }
+
+.cardDataCost {
+    position: relative;
+
+    // display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+}
+
+  .cardDataCost:before {
+    position: relative;
+    content: "";
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 0px, #ffffff, rgba(255, 255, 255, 0) 58%);
+    filter: blur(5px);
+    z-index: 2;
+  }
+
