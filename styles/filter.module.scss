@@ -2,7 +2,7 @@
 
 // filter sections 
 .filterColumn {
-    border: 2px solid orange;
+    position: relative;
     height: 100vh;
 }
 
@@ -30,7 +30,7 @@
 
 
 .costImage {
-    width: 60%;
+    width: 80%;
     z-index: 1;
     grid-column-start: 1;
     grid-row-start: 1;
@@ -86,4 +86,19 @@
 .inputStyle::placeholder {
     color: grey;
     font-size: 1em;
+}
+
+// styling for basic HTML elements
+.hrStyle {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(78, 78, 78, 0.438), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+}
+
+.buttonContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // color: black;
 }

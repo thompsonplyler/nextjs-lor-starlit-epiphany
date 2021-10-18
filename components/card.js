@@ -43,6 +43,7 @@ export default function Card( {
   regions, 
   spellSpeed,
   subtype, 
+  count,
   subtypes, 
   cost, 
   cardCode, 
@@ -55,6 +56,7 @@ export default function Card( {
 
 
   const handleMouseEnter = (e, set, cardCode) => {
+    console.log("FOUND A CARD!")
     setHover(true)
     setModalMousePos({x:e.clientX,y:e.clientY})
     cardModalMaker(e,set,cardCode)
@@ -69,11 +71,11 @@ export default function Card( {
   const handleMouseMove = (e) => {
     setModalMousePos({x:e.pageX,y:e.pageY})  }
     const color = regionColorKey[`${region}`].color
-    console.log(`The card ${name} has a region of ${region}, which uses the color, ${color}`)
-
+    // console.log(`The card ${name} has a region of ${region}, which uses the color, ${color}`)
+    console.log(count)
 
     return (
-            <div className={styles.cardContainer} onMouseEnter={(e)=>handleMouseEnter(e,set,cardCode)} onMouseLeave={handleMouseLeave}>
+            <div className={styles.cardContainer} key={cardCode} onMouseEnter={(e)=>handleMouseEnter(e,set,cardCode)} onMouseLeave={handleMouseLeave}>
               <div style={{background: `linear-gradient(90deg, ${regionColorKey[`${region}`].color} 66%, rgba(9,9,121,0) 83%)`}}>
               <div className={styles.cardDataContainer}>
                 
@@ -83,9 +85,9 @@ export default function Card( {
                     <p className={styles.costText}>{cost}</p>
                     <img className={styles.costImage} src={`/images/ui-images/Empty_Mana_Art_LoR.png`}/>
               </div>
-
-
                 <div className={styles.cardText}>{name}</div>
+                {count?<div className={styles.cardCountContainer}
+                >x{count}</div>:null}
               </div>
               </div>
               <img className={styles.cardImage} src={`/lorData/${set}/en_us/img/cards/${cardCode}.png`}/>

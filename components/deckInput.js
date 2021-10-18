@@ -1,10 +1,10 @@
-import styles from '../styles/starlit-epiphany.module.scss'
+import styles from '../styles/deckInput.module.scss'
 import {DeckEncoder} from 'runeterra'
 import {useState} from 'react'
 
 let deckParser = (code) => {
     let deck = DeckEncoder.decode(code)
-    console.log("I'm a deck!", deck)
+    // console.log("I'm a deck!", deck)
     return deck
 }
 

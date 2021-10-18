@@ -188,6 +188,10 @@ export default function FilterColumn({
                 {/* region section */}
                 <div className={styles.regionContainer}>
                     {regionMap}
+
+                </div>
+                <div className="buttonContainer">
+                        <button style={{color:"black",border:"none",}}>clear</button>
                 </div>
                 <hr className={styles.hrStyle}/>
                 {/* cost section */}
@@ -195,10 +199,11 @@ export default function FilterColumn({
                     {costMap}
                 </div>
                 <hr className={styles.hrStyle}/>
-                <div className={styles.typeContainer}>
+                {/* <div className={styles.typeContainer}>
                 {/* type section */}
-                {typeMap}
-                </div>
+                {/*{typeMap}*/}
+
+                {/*</div> */}
                 <DeckInput handleDeckCode={handleDeckCode}/>
             </div>
         )

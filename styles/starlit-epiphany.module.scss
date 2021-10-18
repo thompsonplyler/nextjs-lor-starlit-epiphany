@@ -22,7 +22,8 @@ $primary-text-color: #ffffff;
     background-repeat: repeat;
     background-image: url("/images/background-dark-grey-noise.jpg");
     color: $primary-text-color;
-    z-index: -1
+    z-index: -1;
+    
 }
 
 .heading {
@@ -33,12 +34,7 @@ $primary-text-color: #ffffff;
     justify-content: center;
 }
 
-// styling for basic HTML elements
-.hrStyle {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(78, 78, 78, 0.438), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
-}
+
 
 // main container for app
 .columnGrid {
@@ -59,17 +55,27 @@ $primary-text-color: #ffffff;
 .cardColumns2 {
     display:grid;
     grid-template-columns: 1fr 1fr;
-    justify-content:space-around;
+    // justify-content:space-around;
 
 }
 
 
 // columns for specific columns 
 .dangerCardColumn {
-justify-self: center;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-self: center;
+    grid-auto-rows: 50px;
+    grid-column-gap: 2%;
+
 }
 
 .deckCardColumn {
-justify-self: center;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 50px;
+    grid-column-gap: 2%;
 }
 

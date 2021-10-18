@@ -45,11 +45,12 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
         })
         
         const deckData = sortedData.map(card=>{
-            let {name, set, region, regions, spellSpeed,subtype, subtypes, cost, cardCode} = card
+            let {name, set, region, regions, spellSpeed,subtype, subtypes, cost, cardCode, count} = card
             set = set.toLowerCase()
             // need modal for mouseover on card
             return <Card 
                     name={name} 
+                    count={count}
                     set={set} 
                     region={region} 
                     regions={regions} 
@@ -94,13 +95,13 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
         })
 
         let costFilteredData = initialData.filter(card=>card.cost<=cost.cost)
-        console.log(costFilteredData)
+        // console.log(costFilteredData)
         // for each region, filter the cards if they're included... 
-        console.log(regions)
+        // console.log(regions)
         let regionFilteredData = []
 
         if (regions.regions.length != 0) {
-            console.log("WE GOT REGIONS HERE!")
+            // console.log("WE GOT REGIONS HERE!")
            
             costFilteredData.filter(card=>{
                 regions.regions.forEach(region=>{
@@ -114,7 +115,7 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
         }
         else {
             regionFilteredData = costFilteredData
-            console.log("No regions found.")
+            // console.log("No regions found.")
         }
         
         
@@ -136,20 +137,24 @@ export default function StarlitEpiphany({data1, data2, data3, data4, data5}) {
     })
 
     const handleDeckCode = (deckData) => {
-        console.log(deckData)
+        // console.log(deckData)
+        // deckData has the count
+        // deckData[0].count == ${an integer}
         let hashedDeckArray = deckData.map(card=>{
-            return lorHashTable[`${card.code}`]
-    
+            let hashedCard = lorHashTable[`${card.code}`]
+            let newCard = {...hashedCard,count:card.count}
+            return newCard
         })
-        let newDeck = cardArrayMaker(hashedDeckArray)
-        setDeckArray(newDeck)
+        let deckCardArray = cardArrayMaker(hashedDeckArray)
+ 
+        setDeckArray(deckCardArray)
     }
 
     const listRegionsFilter = () => {
-        console.log("I'm a region!")
+        // console.log("I'm a region!")
     }
     const listTypeFilter = () => {
-        console.log(`You clicked ${type}`)
+        // console.log(`You clicked ${type}`)
     }
 
     return (
